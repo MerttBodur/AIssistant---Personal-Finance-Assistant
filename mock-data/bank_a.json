@@ -1,0 +1,169 @@
+{
+  "bankName": "Bank A",
+  "accountType": "checking",
+  "balance": 24850,
+  "transactions": [
+    {
+      "id": "txn_a_001",
+      "date": "2026-05-13",
+      "description": "Yemeksepeti - aksam siparisi",
+      "amount": 287,
+      "type": "expense",
+      "category": "Food",
+      "source": "Bank A"
+    },
+    {
+      "id": "txn_a_002",
+      "date": "2026-05-13",
+      "description": "Migros Sanal Market",
+      "amount": 642,
+      "type": "expense",
+      "category": "Food",
+      "source": "Bank A"
+    },
+    {
+      "id": "txn_a_003",
+      "date": "2026-05-12",
+      "description": "Starbucks Bagdat",
+      "amount": 185,
+      "type": "expense",
+      "category": "Food",
+      "source": "Bank A"
+    },
+    {
+      "id": "txn_a_004",
+      "date": "2026-05-12",
+      "description": "BiTaksi",
+      "amount": 94,
+      "type": "expense",
+      "category": "Transport",
+      "source": "Bank A"
+    },
+    {
+      "id": "txn_a_005",
+      "date": "2026-05-11",
+      "description": "Trendyol Yemek",
+      "amount": 156,
+      "type": "expense",
+      "category": "Food",
+      "source": "Bank A"
+    },
+    {
+      "id": "txn_a_006",
+      "date": "2026-05-10",
+      "description": "A101",
+      "amount": 218,
+      "type": "expense",
+      "category": "Food",
+      "source": "Bank A"
+    },
+    {
+      "id": "txn_a_007",
+      "date": "2026-05-09",
+      "description": "Getir",
+      "amount": 312,
+      "type": "expense",
+      "category": "Food",
+      "source": "Bank A"
+    },
+    {
+      "id": "txn_a_008",
+      "date": "2026-05-09",
+      "description": "Spotify Aile",
+      "amount": 84,
+      "type": "expense",
+      "category": "Subscriptions",
+      "source": "Bank A"
+    },
+    {
+      "id": "txn_a_009",
+      "date": "2026-05-08",
+      "description": "Kahve Dunyasi",
+      "amount": 125,
+      "type": "expense",
+      "category": "Food",
+      "source": "Bank A"
+    },
+    {
+      "id": "txn_a_010",
+      "date": "2026-05-07",
+      "description": "Marti",
+      "amount": 45,
+      "type": "expense",
+      "category": "Transport",
+      "source": "Bank A"
+    },
+    {
+      "id": "txn_a_011",
+      "date": "2026-05-06",
+      "description": "Yemeksepeti - ogle",
+      "amount": 198,
+      "type": "expense",
+      "category": "Food",
+      "source": "Bank A"
+    },
+    {
+      "id": "txn_a_012",
+      "date": "2026-05-05",
+      "description": "BIM",
+      "amount": 276,
+      "type": "expense",
+      "category": "Food",
+      "source": "Bank A"
+    },
+    {
+      "id": "txn_a_013",
+      "date": "2026-05-04",
+      "description": "Netflix",
+      "amount": 149,
+      "type": "expense",
+      "category": "Subscriptions",
+      "source": "Bank A"
+    },
+    {
+      "id": "txn_a_014",
+      "date": "2026-05-03",
+      "description": "Yemeksepeti",
+      "amount": 342,
+      "type": "expense",
+      "category": "Food",
+      "source": "Bank A"
+    },
+    {
+      "id": "txn_a_015",
+      "date": "2026-05-02",
+      "description": "Migros",
+      "amount": 528,
+      "type": "expense",
+      "category": "Food",
+      "source": "Bank A"
+    },
+    {
+      "id": "txn_a_016",
+      "date": "2026-05-01",
+      "description": "Maas - aylik odeme",
+      "amount": 38500,
+      "type": "income",
+      "category": "Salary",
+      "source": "Bank A"
+    },
+    {
+      "id": "txn_a_017",
+      "date": "2026-04-29",
+      "description": "Trendyol",
+      "amount": 1240,
+      "type": "expense",
+      "category": "Shopping",
+      "source": "Bank A"
+    },
+    {
+      "id": "txn_a_018",
+      "date": "2026-04-28",
+      "description": "Yemeksepeti",
+      "amount": 224,
+      "type": "expense",
+      "category": "Food",
+      "source": "Bank A"
+    }
+  ]
+}

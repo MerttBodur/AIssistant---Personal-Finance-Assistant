@@ -1,0 +1,11 @@
+{
+  "noBanksConnected": "Analiz yapabilmem icin once en az bir bankayi baglamaniz gerekiyor. Baglantilar ekranindan Bank A, Bank B veya Bank C ile baslayabilirsiniz.",
+  "genericAdvice": [
+    "Harcamalarinizi kategori dagilimi ve banka kaynagina gore inceleyebilirsiniz. En buyuk kalemleri kucuk aliskanlik degisiklikleriyle azaltmayi degerlendirebilirsiniz.",
+    "Birden fazla banka baglandiginda toplam bakiye, aylik gelir ve giderleri tek ekranda karsilastirabilirsiniz.",
+    "Abonelik ve yemek harcamalari sik tekrarlanan kalemlerdir. Bu kalemleri bankalara gore ayirarak nerede yogunlastigini gorebilirsiniz.",
+    "Gelir ve gider farkinizi takip etmek, bu ayki tasarruf oraninizi anlamaniza yardimci olur.",
+    "Asistan su anda yanit uretemezse bile pano ozeti, kategori dagilimi ve hareket gecmisi finansal durumunuzu incelemek icin kullanilabilir."
+  ],
+  "assistantUnavailable": "Su anda yanit olusturamadim. Yine de pano ozeti, kategori dagilimi ve hareket gecmisini bagli bankalariniz uzerinden inceleyebilirsiniz."
+}

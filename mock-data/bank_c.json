@@ -1,0 +1,106 @@
+{
+  "bankName": "Bank C",
+  "accountType": "credit_card",
+  "balance": -6420,
+  "transactions": [
+    {
+      "id": "txn_c_001",
+      "date": "2026-05-13",
+      "description": "Big Chefs",
+      "amount": 1280,
+      "type": "expense",
+      "category": "Food",
+      "source": "Bank C"
+    },
+    {
+      "id": "txn_c_002",
+      "date": "2026-05-12",
+      "description": "Mado",
+      "amount": 465,
+      "type": "expense",
+      "category": "Food",
+      "source": "Bank C"
+    },
+    {
+      "id": "txn_c_003",
+      "date": "2026-05-11",
+      "description": "Hepsiburada",
+      "amount": 2480,
+      "type": "expense",
+      "category": "Shopping",
+      "source": "Bank C"
+    },
+    {
+      "id": "txn_c_004",
+      "date": "2026-05-10",
+      "description": "CinemaPink - 2 bilet",
+      "amount": 380,
+      "type": "expense",
+      "category": "Entertainment",
+      "source": "Bank C"
+    },
+    {
+      "id": "txn_c_005",
+      "date": "2026-05-09",
+      "description": "Mavi Jeans",
+      "amount": 890,
+      "type": "expense",
+      "category": "Shopping",
+      "source": "Bank C"
+    },
+    {
+      "id": "txn_c_006",
+      "date": "2026-05-07",
+      "description": "Kofteci Yusuf",
+      "amount": 348,
+      "type": "expense",
+      "category": "Food",
+      "source": "Bank C"
+    },
+    {
+      "id": "txn_c_007",
+      "date": "2026-05-05",
+      "description": "Apple Music",
+      "amount": 54,
+      "type": "expense",
+      "category": "Subscriptions",
+      "source": "Bank C"
+    },
+    {
+      "id": "txn_c_008",
+      "date": "2026-05-04",
+      "description": "Decathlon",
+      "amount": 1620,
+      "type": "expense",
+      "category": "Shopping",
+      "source": "Bank C"
+    },
+    {
+      "id": "txn_c_009",
+      "date": "2026-05-03",
+      "description": "Eczane - recete",
+      "amount": 218,
+      "type": "expense",
+      "category": "Health",
+      "source": "Bank C"
+    },
+    {
+      "id": "txn_c_010",
+      "date": "2026-05-02",
+      "description": "Burger King",
+      "amount": 195,
+      "type": "expense",
+      "category": "Food",
+      "source": "Bank C"
+    },
+    {
+      "id": "txn_c_011",
+      "date": "2026-04-30",
+      "description": "Trendyol",
+      "amount": 1850,
+      "type": "expense",
+      "category": "Shopping",
+      "source": "Bank C"
+    }
+  ]
+}

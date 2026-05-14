@@ -1,0 +1,79 @@
+{
+  "bankName": "Bank B",
+  "accountType": "savings",
+  "balance": 48200,
+  "transactions": [
+    {
+      "id": "txn_b_001",
+      "date": "2026-05-10",
+      "description": "Kira - Mayis",
+      "amount": 16500,
+      "type": "expense",
+      "category": "Rent",
+      "source": "Bank B"
+    },
+    {
+      "id": "txn_b_002",
+      "date": "2026-05-08",
+      "description": "Dogalgaz - IGDAS",
+      "amount": 842,
+      "type": "expense",
+      "category": "Utilities",
+      "source": "Bank B"
+    },
+    {
+      "id": "txn_b_003",
+      "date": "2026-05-07",
+      "description": "Elektrik - BEDAS",
+      "amount": 612,
+      "type": "expense",
+      "category": "Utilities",
+      "source": "Bank B"
+    },
+    {
+      "id": "txn_b_004",
+      "date": "2026-05-06",
+      "description": "Internet - Turkcell",
+      "amount": 389,
+      "type": "expense",
+      "category": "Utilities",
+      "source": "Bank B"
+    },
+    {
+      "id": "txn_b_005",
+      "date": "2026-05-05",
+      "description": "Su - ISKI",
+      "amount": 178,
+      "type": "expense",
+      "category": "Utilities",
+      "source": "Bank B"
+    },
+    {
+      "id": "txn_b_006",
+      "date": "2026-05-04",
+      "description": "Aidat - site yonetimi",
+      "amount": 950,
+      "type": "expense",
+      "category": "Utilities",
+      "source": "Bank B"
+    },
+    {
+      "id": "txn_b_007",
+      "date": "2026-05-02",
+      "description": "Birikim transferi",
+      "amount": 5000,
+      "type": "income",
+      "category": "Other",
+      "source": "Bank B"
+    },
+    {
+      "id": "txn_b_008",
+      "date": "2026-04-30",
+      "description": "Saglik sigortasi",
+      "amount": 1240,
+      "type": "expense",
+      "category": "Health",
+      "source": "Bank B"
+    }
+  ]
+}
