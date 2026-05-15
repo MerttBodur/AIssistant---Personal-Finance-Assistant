@@ -4,9 +4,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository state
 
-This repository currently contains **only a design document** (`AIssistant_Project_Design_Document.md`). There is no source code, `package.json`, build tooling, or `.env` yet. The first implementation session will scaffold the Next.js project described in §6.4 of the design doc.
+The Next.js scaffold and mock data are now on `main`:
 
-When code does not exist yet, read the design document before answering questions about how something "should" work — it is the source of truth, not assumption.
+- `frontend/` — Next.js 15 App Router project (`frontend/app/layout.jsx`, `frontend/app/page.jsx`, `frontend/app/globals.css`). `package.json` lives here, **not at repo root**.
+- `mock-data/` — `bank_a.json`, `bank_b.json`, `bank_c.json`, `fallback_responses.json`.
+- `AIssistant_Project_Design_Document.md` — still the source of truth for unbuilt features. §-references throughout this file point to it.
+
+Not yet built: `frontend/app/api/*` routes, `frontend/lib/finance.js`, `frontend/lib/gemini.js`. When the design doc and the code conflict, the design doc wins for unbuilt features; the code wins for built ones.
+
+Also present: `AIssistant - Personal Finance Assistant/` is an **untracked** loose-JSX UI prototype (HTML + `.jsx` files, no build tooling). It is **not** the Next.js project — do not edit it expecting the demo to pick up changes.
 
 ## What this project is
 
@@ -16,11 +22,11 @@ The product's defining differentiator is **multi-bank aggregation** — not the 
 
 ## Planned architecture (per the design doc)
 
-- **Single Next.js project, App Router.** Backend lives in `/app/api/*` routes — no separate Node server, no CORS layer, no microservices. `npm run dev` starts everything.
+- **Single Next.js project, App Router, under `frontend/`.** Backend lives in `frontend/app/api/*` routes — no separate Node server, no CORS layer, no microservices. `cd frontend && npm run dev` starts everything.
 - **No database.** State is in-memory on the server and React state on the client. Server restart resets everything; this is intended.
-- **Mock data only.** Banks are "connected" by loading `/data/bank_a.json`, `/data/bank_b.json`, `/data/bank_c.json` into in-memory state. There is no real bank integration and bank names must stay generic (Bank A/B/C).
-- **Finance calculations live in `/lib/finance.js`** as pure functions consumed by API routes. Do not scatter aggregation logic across route handlers or React components.
-- **Gemini integration lives in `/lib/gemini.js`** and is only called from API routes (`/api/assistant/chat`, `/api/assistant/advice-preview`). The frontend never talks to Gemini directly.
+- **Mock data only.** Banks are "connected" by loading `mock-data/bank_a.json`, `mock-data/bank_b.json`, `mock-data/bank_c.json` into in-memory state (the design doc calls this folder `/data/` — the actual folder is `mock-data/`). There is no real bank integration and bank names must stay generic (Bank A/B/C).
+- **Finance calculations live in `frontend/lib/finance.js`** as pure functions consumed by API routes. Do not scatter aggregation logic across route handlers or React components.
+- **Gemini integration lives in `frontend/lib/gemini.js`** and is only called from API routes (`/api/assistant/chat`, `/api/assistant/advice-preview`). The frontend never talks to Gemini directly.
 
 The five planned API routes and their response shapes are specified in §3.5. The Gemini prompt structure is specified in §4.3 — every request must include a financial-context block built from the same data the dashboard uses, plus chat history, plus the system prompt with the safety rules.
 
@@ -43,7 +49,20 @@ Section 7 is the canonical reference when editing the Gemini system prompt or as
 - Refusals must be **brief and redirect to what the assistant can do** (review spending, compare across banks, suggest habit changes).
 - The assistant should **reference specific source banks by name** ("Most food spending comes from Bank A") — this is the differentiator from a generic finance chatbot.
 - When data is missing or no banks are connected, the assistant must say so rather than fabricate analysis (§4.8).
-- Gemini failures must fall back to **pre-cached generic advice strings** stored in `/data/fallback_responses.json` (§4.8, §6.5). Never surface raw API errors to the user.
+- Gemini failures must fall back to **pre-cached generic advice strings** stored in `mock-data/fallback_responses.json` (§4.8, §6.5). Never surface raw API errors to the user.
+
+## Branching strategy
+
+Five branches, one per §6.1 ownership slice, all forked from `main`:
+
+- `main` — integration target. PRs merge here.
+- `feature/frontend` — UI screens (Developer A). **Merged** via PR #2.
+- `feature/mock-data` — bank JSON + fallback strings. **Merged** via PR #1.
+- `feature/api` — `frontend/app/api/*` routes (Developer B). **Stale** — behind `main` by the frontend + mock-data merges; rebase before resuming.
+- `feature/ai` — Gemini integration in `frontend/lib/gemini.js` + `/api/assistant/*` (Developer C). **Stale** — same as above.
+- `dev` — only the initial commit; treat as unused.
+
+Before starting work on `feature/api` or `feature/ai`: `git checkout <branch> && git rebase main`. Their working tree currently lacks the Next.js scaffold those routes/integrations are supposed to live inside.
 
 ## Scope discipline
 
@@ -60,13 +79,15 @@ The design doc commits to a 4-day build (§6.2) and a 4-person team with non-ove
 - Currency: TRY only. No multi-currency handling.
 - Locale: Turkish spending patterns in mock data (market alışverişi, maaş, kira, etc.).
 
-## When code is added
+## Commands
 
-Once `package.json` exists, the planned commands are:
+Run from `frontend/` (where `package.json` lives):
 
-- `npm run dev` — starts Next.js dev server (frontend + API routes)
+- `npm install` — first time only
+- `npm run dev` — starts Next.js dev server on `localhost:3000` (frontend + API routes)
 - `npm run build` / `npm run start` — production build / serve
+- `npm run lint` — Next.js ESLint
 
-No test framework is specified in the design doc. If you add tests, scope them to `/lib/finance.js` (the pure calculation functions) where they have the highest value-per-effort.
+No test framework is specified in the design doc. If you add tests, scope them to `frontend/lib/finance.js` (the pure calculation functions) where they have the highest value-per-effort.
 
-Environment variables (§6.7): only `GEMINI_API_KEY` in `.env.local`. There is no other configuration.
+Environment variables (§6.7): only `GEMINI_API_KEY` in `frontend/.env.local`. There is no other configuration.
