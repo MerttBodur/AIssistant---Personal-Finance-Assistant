@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 import fs from "node:fs";
 import path from "node:path";
-import { computeAllInsights } from "../../../../lib/insights.js";
-import { generateChatResponse } from "../../../../lib/gemini.js";
+import { computeAllInsights } from "../../../../lib/ai/insights.js";
+import { generateChatResponse } from "../../../../lib/ai/gemini.js";
 
 const fallback = JSON.parse(
   fs.readFileSync(
