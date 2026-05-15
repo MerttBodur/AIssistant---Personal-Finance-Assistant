@@ -4,13 +4,18 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository state
 
-The Next.js scaffold and mock data are now on `main`:
+The full stack lives in `main` once feature branches merge through `dev`:
 
-- `frontend/` — Next.js 15 App Router project (`frontend/app/layout.jsx`, `frontend/app/page.jsx`, `frontend/app/globals.css`). `package.json` lives here, **not at repo root**.
+- `frontend/` — Next.js 15 App Router project. `package.json` lives here, **not at repo root**.
+  - `frontend/app/page.jsx`, `frontend/app/layout.jsx`, `frontend/app/globals.css` — UI shell.
+  - `frontend/app/api/assistant/{chat,advice-preview}/route.js` — AI endpoints.
+  - `frontend/app/api/{connect-bank,disconnect-bank,transactions,dashboard/summary}/route.js` — data/aggregation endpoints.
+  - `frontend/lib/ai/` — AI layer modules (`gemini.js` SDK wrapper + system prompt, `insights.js` pre-computed signal: category-bank concentration, recurring subscriptions, outliers, bank behavior profile).
+  - `frontend/lib/api/` — API-layer state and shared helpers (`state.js` in-memory connected-banks Map).
 - `mock-data/` — `bank_a.json`, `bank_b.json`, `bank_c.json`, `fallback_responses.json`.
-- `AIssistant_Project_Design_Document.md` — still the source of truth for unbuilt features. §-references throughout this file point to it.
+- `AIssistant_Project_Design_Document.md` — design source of truth. §-references throughout this file point to it.
 
-Not yet built: `frontend/app/api/*` routes, `frontend/lib/finance.js`, `frontend/lib/gemini.js`. When the design doc and the code conflict, the design doc wins for unbuilt features; the code wins for built ones.
+There is no `frontend/lib/finance.js`. Aggregation logic is inlined inside `frontend/app/api/dashboard/summary/route.js` — the design doc §3.6 explicitly allows either approach and the inline version was chosen to keep the abstraction surface small. If a future change makes aggregation reusable across routes, extract it into `frontend/lib/api/finance.js` (not the design doc's older `frontend/lib/finance.js` location).
 
 Also present: `AIssistant - Personal Finance Assistant/` is an **untracked** loose-JSX UI prototype (HTML + `.jsx` files, no build tooling). It is **not** the Next.js project — do not edit it expecting the demo to pick up changes.
 
@@ -22,11 +27,12 @@ The product's defining differentiator is **multi-bank aggregation** — not the 
 
 ## Planned architecture (per the design doc)
 
-- **Single Next.js project, App Router, under `frontend/`.** Backend lives in `frontend/app/api/*` routes — no separate Node server, no CORS layer, no microservices. `cd frontend && npm run dev` starts everything.
+- **Single Next.js project, App Router, under `frontend/`.** Backend lives in `frontend/app/api/*` routes — no separate Node server, no CORS layer, no microservices. `cd frontend && npm run dev` starts everything. The "AI files should live in their own folder" question comes up periodically — they do, **inside the Next.js project**, under `frontend/lib/ai/`. Moving them outside `frontend/` would either require a separate Node server (which §3.2 forbids) or path-alias gymnastics with zero benefit.
+- **`frontend/lib/` is split by concern.** `lib/ai/` holds Gemini and insight pre-computation. `lib/api/` holds API-route state and shared helpers. UI components stay under `frontend/app/`. New shared backend module → choose the matching subfolder; do not drop bare files into `frontend/lib/`.
 - **No database.** State is in-memory on the server and React state on the client. Server restart resets everything; this is intended.
 - **Mock data only.** Banks are "connected" by loading `mock-data/bank_a.json`, `mock-data/bank_b.json`, `mock-data/bank_c.json` into in-memory state (the design doc calls this folder `/data/` — the actual folder is `mock-data/`). There is no real bank integration and bank names must stay generic (Bank A/B/C).
-- **Finance calculations live in `frontend/lib/finance.js`** as pure functions consumed by API routes. Do not scatter aggregation logic across route handlers or React components.
-- **Gemini integration lives in `frontend/lib/gemini.js`** and is only called from API routes (`/api/assistant/chat`, `/api/assistant/advice-preview`). The frontend never talks to Gemini directly.
+- **Gemini integration lives in `frontend/lib/ai/gemini.js`** and is only called from API routes (`/api/assistant/chat`, `/api/assistant/advice-preview`). The frontend never talks to Gemini directly. The system prompt forces multi-bank, Turkish-formal, refusal-aware behavior.
+- **AI differentiator: `frontend/lib/ai/insights.js`.** Before calling Gemini, the API computes deterministic signals (top-3 category-bank concentration, ±5% recurring subscription detection, 3×-median outliers, per-bank behavior profile) and ships them as structured JSON in the prompt. This is what separates this assistant from raw-LLM chat — the LLM gets pre-extracted multi-bank signal, not raw transaction lists. Never strip this layer without a replacement plan.
 
 The five planned API routes and their response shapes are specified in §3.5. The Gemini prompt structure is specified in §4.3 — every request must include a financial-context block built from the same data the dashboard uses, plus chat history, plus the system prompt with the safety rules.
 
@@ -53,16 +59,24 @@ Section 7 is the canonical reference when editing the Gemini system prompt or as
 
 ## Branching strategy
 
-Five branches, one per §6.1 ownership slice, all forked from `main`:
+Per-concern feature branches integrate through `dev`, then `dev` flows to `main`. **Never commit AI work onto `feature/api` or API work onto `feature/ai`** — the branches exist to keep the two concerns auditable and reviewable on their own.
 
-- `main` — integration target. PRs merge here.
-- `feature/frontend` — UI screens (Developer A). **Merged** via PR #2.
+- `main` — release target. Only receives merges from `dev`.
+- `dev` — integration branch. Both feature branches merge here first.
+- `feature/ai` — Gemini wrapper, insight pre-computation, assistant routes. Touches `frontend/lib/ai/**` and `frontend/app/api/assistant/**`.
+- `feature/api` — bank connect/disconnect, transactions, dashboard summary. Touches `frontend/lib/api/**` and `frontend/app/api/{connect-bank,disconnect-bank,transactions,dashboard}/**`.
+- `feature/frontend` — UI shell. **Merged** via PR #2 historically; reopen for further UI-only changes.
 - `feature/mock-data` — bank JSON + fallback strings. **Merged** via PR #1.
-- `feature/api` — `frontend/app/api/*` routes (Developer B). **Stale** — behind `main` by the frontend + mock-data merges; rebase before resuming.
-- `feature/ai` — Gemini integration in `frontend/lib/gemini.js` + `/api/assistant/*` (Developer C). **Stale** — same as above.
-- `dev` — only the initial commit; treat as unused.
 
-Before starting work on `feature/api` or `feature/ai`: `git checkout <branch> && git rebase main`. Their working tree currently lacks the Next.js scaffold those routes/integrations are supposed to live inside.
+**Required flow for every change:**
+
+1. Identify the concern (AI vs. API vs. UI vs. mock-data).
+2. Check out the matching feature branch and rebase it onto `main`: `git checkout feature/<concern> && git rebase main`.
+3. Implement, commit on that branch.
+4. Merge into `dev`: `git checkout dev && git merge feature/<concern>`.
+5. Merge `dev` into `main`: `git checkout main && git merge dev`.
+
+If a change genuinely spans concerns (e.g., a contract change between AI and API), split it into two commits on the two branches and land them through `dev` in order. CLAUDE.md updates and other repo-wide docs may travel on whichever feature branch already carries the substantive change.
 
 ## Scope discipline
 
@@ -88,6 +102,6 @@ Run from `frontend/` (where `package.json` lives):
 - `npm run build` / `npm run start` — production build / serve
 - `npm run lint` — Next.js ESLint
 
-No test framework is specified in the design doc. If you add tests, scope them to `frontend/lib/finance.js` (the pure calculation functions) where they have the highest value-per-effort.
+No test framework is wired up and the project deliberately ships without tests for the hackathon — verify changes by running `npm run dev` and exercising the demo flow in the mobile-view browser.
 
 Environment variables (§6.7): only `GEMINI_API_KEY` in `frontend/.env.local`. There is no other configuration.
