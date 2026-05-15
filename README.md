@@ -2,7 +2,7 @@
 
 Türkiye'deki kullanıcılar için tasarlanmış, **birden fazla bankadaki harcamaları tek bir ekranda birleştiren** mobil görünümlü bir kişisel finans asistanı. Hackathon kapsamında 4 kişilik bir öğrenci ekibi tarafından geliştirilmiştir.
 
-> ⚠️ **Bu bir demo projesidir.** Gerçek banka entegrasyonu, gerçek kullanıcı kimlik doğrulaması veya kalıcı veri tabanı içermez. Tüm banka verileri `mock-data/` klasöründeki JSON dosyalarından yüklenir.
+> ⚠️ **Bu proje BTK Hackathon 2026 için geliştirilmiş bir demodur.** Gerçek banka entegrasyonu, gerçek kullanıcı kimlik doğrulaması veya kalıcı veri tabanı içermez. Tüm banka verileri `mock-data/` klasöründeki JSON dosyalarından yüklenir.
 
 ---
 
@@ -23,6 +23,11 @@ Projenin **ayırt edici özelliği** ham LLM sohbeti değil, Gemini'ye gönderil
 - 🛡️ **Güvenli Konuşma Sınırları** — Yatırım/vergi/hukuk tavsiyesi vermez, zarif şekilde reddeder
 - 📱 **Mobil Görünüm** — 375–414px genişlikte mobil fintech uygulaması gibi tasarlandı
 - 🇹🇷 **Tam Türkçe** — TRY para birimi, Türkçe harcama kategorileri ve metinler
+
+## Önemli Not!!
+
+- Projedeki banka hesaplarına bağlantı uygulama özelliği, kullanıcıdan sadece read-only(sadece okuma) izni alıp bakiye,
+harcama geçmişi, abonelikler, faturalar, krediler, taksitler, hesap hareketleri, ödemeler gibi hassas olmayan verileri görüntüleyip hassas olan hiçbir veriye erişim sağlamaz, hesap üzerinde değişiklik yapamaz.
 
 ---
 
