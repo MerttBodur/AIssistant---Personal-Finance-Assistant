@@ -105,11 +105,28 @@ export default function Home() {
   const [transactions, setTransactions] = useState([]);
   const [assistantOpen, setAssistantOpen] = useState(false);
   const [apiOffline, setApiOffline] = useState(false);
+  const [advicePreview, setAdvicePreview] = useState(null);
 
   const connectedBanks = useMemo(
     () => BANKS.filter((bank) => connected.includes(bank.id)),
     [connected],
   );
+
+  const fetchAdvicePreview = async (summaryData, txs) => {
+    if (!summaryData || !Array.isArray(txs) || txs.length === 0) {
+      setAdvicePreview(null);
+      return;
+    }
+    try {
+      const data = await requestJson("/api/assistant/advice-preview", {
+        method: "POST",
+        body: JSON.stringify({ financialContext: summaryData, transactions: txs }),
+      });
+      setAdvicePreview(data?.response || null);
+    } catch {
+      setAdvicePreview(null);
+    }
+  };
 
   const refreshFinancialData = async () => {
     try {
@@ -117,13 +134,16 @@ export default function Home() {
         requestJson("/api/dashboard/summary"),
         requestJson("/api/transactions"),
       ]);
+      const txs = transactionData.transactions || transactionData || [];
       setSummary(summaryData);
-      setTransactions(transactionData.transactions || transactionData || []);
+      setTransactions(txs);
       setApiOffline(false);
+      fetchAdvicePreview(summaryData, txs);
     } catch {
       setSummary(null);
       setTransactions([]);
       setApiOffline(true);
+      setAdvicePreview(null);
     }
   };
 
@@ -182,6 +202,7 @@ export default function Home() {
     <DashboardScreen
       connected={connected}
       summary={summary}
+      advicePreview={advicePreview}
       apiOffline={apiOffline}
       onConnectPrompt={() => setTab("connections")}
     />
@@ -206,6 +227,7 @@ export default function Home() {
                 onClose={() => setAssistantOpen(false)}
                 connectedCount={connected.length}
                 summary={summary}
+                transactions={transactions}
               />
             </>
           )}
@@ -265,7 +287,7 @@ function LoginScreen({ onLogin }) {
   );
 }
 
-function DashboardScreen({ connected, summary, apiOffline, onConnectPrompt }) {
+function DashboardScreen({ connected, summary, advicePreview, apiOffline, onConnectPrompt }) {
   const hasBanks = connected.length > 0;
 
   if (!hasBanks) {
@@ -295,7 +317,7 @@ function DashboardScreen({ connected, summary, apiOffline, onConnectPrompt }) {
           <MetricCard label="Gelir" value={summary ? formatTry(summary.monthlyIncome) : "Bekleniyor"} tone="positive" />
           <MetricCard label="Gider" value={summary ? formatTry(summary.monthlyExpenses) : "Bekleniyor"} tone="negative" />
         </div>
-        <AdviceCard apiOffline={apiOffline} summary={summary} />
+        <AdviceCard apiOffline={apiOffline} summary={summary} advicePreview={advicePreview} />
         <CategoryCard summary={summary} />
         <BankBreakdown summary={summary} />
       </div>
@@ -323,8 +345,9 @@ function MetricCard({ label, value, tone }) {
   );
 }
 
-function AdviceCard({ apiOffline, summary }) {
-  const text = summary?.advicePreview
+function AdviceCard({ apiOffline, summary, advicePreview }) {
+  const text = advicePreview
+    || summary?.advicePreview
     || (apiOffline
       ? "API branch'i entegre edildiginde asistan gorusu burada canli veriden uretilecek."
       : "Bagli hesaplardan gelen harcama oruntuleri burada ozetlenecek.");
@@ -445,7 +468,7 @@ function TransactionsScreen({ banks, transactions }) {
   );
 }
 
-function AssistantSheet({ open, onClose, connectedCount, summary }) {
+function AssistantSheet({ open, onClose, connectedCount, summary, transactions }) {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [thinking, setThinking] = useState(false);
@@ -472,7 +495,7 @@ function AssistantSheet({ open, onClose, connectedCount, summary }) {
     try {
       const data = await requestJson("/api/assistant/chat", {
         method: "POST",
-        body: JSON.stringify({ message: content, chatHistory: nextMessages.slice(-6), financialContext: summary }),
+        body: JSON.stringify({ message: content, chatHistory: nextMessages.slice(-6), financialContext: summary, transactions }),
       });
       setMessages((current) => [...current, { role: "assistant", content: data.response || data.message }]);
     } catch {
