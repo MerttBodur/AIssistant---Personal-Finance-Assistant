@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import fs from "node:fs";
 import path from "node:path";
 import { computeAllInsights } from "../../../../lib/ai/insights.js";
+import { computeForesight } from "../../../../lib/ai/foresight.js";
 import { generateAdvicePreview } from "../../../../lib/ai/gemini.js";
 
 const fallback = JSON.parse(
@@ -37,7 +38,12 @@ export async function POST(request) {
 
   try {
     const insights = computeAllInsights(transactions, financialContext);
-    const response = await generateAdvicePreview({ financialContext, insights });
+    const foresight = computeForesight({
+      summary: financialContext,
+      transactions,
+      upcomingPayments: financialContext.upcomingPayments ?? [],
+    });
+    const response = await generateAdvicePreview({ financialContext, insights, foresight });
     return NextResponse.json({ success: true, response, source: "gemini" });
   } catch (error) {
     console.log("[assistant/advice-preview] gemini error:", error?.message ?? error);
