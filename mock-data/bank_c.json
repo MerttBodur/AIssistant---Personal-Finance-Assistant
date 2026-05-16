@@ -102,5 +102,14 @@
       "category": "Shopping",
       "source": "Bank C"
     }
+  ],
+  "upcoming_payments": [
+    {
+      "id": "up_c_001",
+      "due_date": "2026-06-16",
+      "amount": 2400,
+      "description": "Kredi kartı asgari ödeme dönemi",
+      "source": "Bank C"
+    }
   ]
 }

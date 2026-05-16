@@ -165,5 +165,21 @@
       "category": "Food",
       "source": "Bank A"
     }
+  ],
+  "upcoming_payments": [
+    {
+      "id": "up_a_001",
+      "due_date": "2026-08-16",
+      "amount": 10000,
+      "description": "Kredi kartı asgari ödeme dönemi",
+      "source": "Bank A"
+    },
+    {
+      "id": "up_a_002",
+      "due_date": "2027-02-16",
+      "amount": 25000,
+      "description": "İhtiyaç kredisi taksit topağı",
+      "source": "Bank A"
+    }
   ]
 }
