@@ -1,11 +1,11 @@
 {
-  "noBanksConnected": "Analiz yapabilmem icin once en az bir bankayi baglamaniz gerekiyor. Baglantilar ekranindan Bank A, Bank B veya Bank C ile baslayabilirsiniz.",
+  "noBanksConnected": "Analiz yapabilmem için önce en az bir bankayı bağlamanız gerekiyor. Bağlantılar ekranından Bank A, Bank B veya Bank C ile başlayabilirsiniz.",
   "genericAdvice": [
-    "Harcamalarinizi kategori dagilimi ve banka kaynagina gore inceleyebilirsiniz. En buyuk kalemleri kucuk aliskanlik degisiklikleriyle azaltmayi degerlendirebilirsiniz.",
-    "Birden fazla banka baglandiginda toplam bakiye, aylik gelir ve giderleri tek ekranda karsilastirabilirsiniz.",
-    "Abonelik ve yemek harcamalari sik tekrarlanan kalemlerdir. Bu kalemleri bankalara gore ayirarak nerede yogunlastigini gorebilirsiniz.",
-    "Gelir ve gider farkinizi takip etmek, bu ayki tasarruf oraninizi anlamaniza yardimci olur.",
-    "Asistan su anda yanit uretemezse bile pano ozeti, kategori dagilimi ve hareket gecmisi finansal durumunuzu incelemek icin kullanilabilir."
+    "Harcamalarınızı kategori dağılımı ve banka kaynağına göre inceleyebilirsiniz. En büyük kalemleri küçük alışkanlık değişiklikleriyle azaltmayı değerlendirebilirsiniz.",
+    "Birden fazla banka bağlandığında toplam bakiye, aylık gelir ve giderleri tek ekranda karşılaştırabilirsiniz.",
+    "Abonelik ve yemek harcamaları sık tekrarlanan kalemlerdir. Bu kalemleri bankalara göre ayırarak nerede yoğunlaştığını görebilirsiniz.",
+    "Gelir ve gider farkınızı takip etmek, bu ayki tasarruf oranınızı anlamanıza yardımcı olur.",
+    "Asistan şu anda yanıt üretemezse bile pano özeti, kategori dağılımı ve hareket geçmişi finansal durumunuzu incelemek için kullanılabilir."
   ],
-  "assistantUnavailable": "Su anda yanit olusturamadim. Yine de pano ozeti, kategori dagilimi ve hareket gecmisini bagli bankalariniz uzerinden inceleyebilirsiniz."
+  "assistantUnavailable": "Şu anda yanıt oluşturamadım. Yine de pano özeti, kategori dağılımı ve hareket geçmişini bağlı bankalarınız üzerinden inceleyebilirsiniz."
 }
