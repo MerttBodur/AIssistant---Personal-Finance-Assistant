@@ -36,9 +36,9 @@ const TIMEOUT_MS = 15000;
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY ?? "");
 const model = genAI.getGenerativeModel({
-  model: "gemini-2.0-flash",
+  model: "gemini-2.5-flash",
   systemInstruction: SYSTEM_PROMPT,
-  generationConfig: { temperature: 0.7, maxOutputTokens: 400 },
+  generationConfig: { temperature: 0.7, maxOutputTokens: 4096 },
 });
 
 const withTimeout = (promise) =>
