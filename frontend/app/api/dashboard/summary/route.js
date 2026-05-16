@@ -65,6 +65,8 @@ function aggregateSummary(banks) {
     };
   });
 
+  const upcomingPayments = banks.flatMap((b) => b.upcoming_payments ?? []);
+
   return {
     connectedBanks: banks.length,
     currentMonth,
@@ -74,6 +76,7 @@ function aggregateSummary(banks) {
     savingsRate,
     categoryBreakdown,
     perBank: perBankBreakdown,
+    upcomingPayments,
   };
 }
 
@@ -89,6 +92,7 @@ export async function GET() {
       savingsRate: null,
       categoryBreakdown: [],
       perBank: [],
+      upcomingPayments: [],
     });
   }
   return NextResponse.json(aggregateSummary(banks));

@@ -75,5 +75,14 @@
       "category": "Health",
       "source": "Bank B"
     }
+  ],
+  "upcoming_payments": [
+    {
+      "id": "up_b_001",
+      "due_date": "2026-11-01",
+      "amount": 8500,
+      "description": "Konut kredisi taksiti",
+      "source": "Bank B"
+    }
   ]
 }

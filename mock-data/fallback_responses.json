@@ -7,5 +7,6 @@
     "Gelir ve gider farkınızı takip etmek, bu ayki tasarruf oranınızı anlamanıza yardımcı olur.",
     "Asistan şu anda yanıt üretemezse bile pano özeti, kategori dağılımı ve hareket geçmişi finansal durumunuzu incelemek için kullanılabilir."
   ],
-  "assistantUnavailable": "Şu anda yanıt oluşturamadım. Yine de pano özeti, kategori dağılımı ve hareket geçmişini bağlı bankalarınız üzerinden inceleyebilirsiniz."
+  "assistantUnavailable": "Şu anda yanıt oluşturamadım. Yine de pano özeti, kategori dağılımı ve hareket geçmişini bağlı bankalarınız üzerinden inceleyebilirsiniz.",
+  "refusalRedirect": "Bu konuda yorum yapamam. Ama bağlı bankalarınızdaki harcamaları inceleyebilir, kategoriler arasında karşılaştırma yapabilir veya pratik alışkanlık önerileri sunabilirim."
 }
