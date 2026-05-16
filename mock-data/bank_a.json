@@ -6,7 +6,7 @@
     {
       "id": "txn_a_001",
       "date": "2026-05-13",
-      "description": "Yemeksepeti - aksam siparisi",
+      "description": "Yemeksepeti - akşam siparişi",
       "amount": 287,
       "type": "expense",
       "category": "Food",
@@ -24,7 +24,7 @@
     {
       "id": "txn_a_003",
       "date": "2026-05-12",
-      "description": "Starbucks Bagdat",
+      "description": "Starbucks Bağdat",
       "amount": 185,
       "type": "expense",
       "category": "Food",
@@ -78,7 +78,7 @@
     {
       "id": "txn_a_009",
       "date": "2026-05-08",
-      "description": "Kahve Dunyasi",
+      "description": "Kahve Dünyası",
       "amount": 125,
       "type": "expense",
       "category": "Food",
@@ -87,7 +87,7 @@
     {
       "id": "txn_a_010",
       "date": "2026-05-07",
-      "description": "Marti",
+      "description": "Martı",
       "amount": 45,
       "type": "expense",
       "category": "Transport",
@@ -96,7 +96,7 @@
     {
       "id": "txn_a_011",
       "date": "2026-05-06",
-      "description": "Yemeksepeti - ogle",
+      "description": "Yemeksepeti - öğle",
       "amount": 198,
       "type": "expense",
       "category": "Food",
@@ -141,7 +141,7 @@
     {
       "id": "txn_a_016",
       "date": "2026-05-01",
-      "description": "Maas - aylik odeme",
+      "description": "Maaş - aylık ödeme",
       "amount": 38500,
       "type": "income",
       "category": "Salary",
