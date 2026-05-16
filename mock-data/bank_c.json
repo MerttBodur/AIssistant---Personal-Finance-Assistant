@@ -51,7 +51,7 @@
     {
       "id": "txn_c_006",
       "date": "2026-05-07",
-      "description": "Kofteci Yusuf",
+      "description": "Köfteci Yusuf",
       "amount": 348,
       "type": "expense",
       "category": "Food",
@@ -78,7 +78,7 @@
     {
       "id": "txn_c_009",
       "date": "2026-05-03",
-      "description": "Eczane - recete",
+      "description": "Eczane - reçete",
       "amount": 218,
       "type": "expense",
       "category": "Health",

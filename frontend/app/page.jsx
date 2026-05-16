@@ -15,7 +15,7 @@ const BANKS = [
   {
     id: "bank_b",
     name: "Bank B",
-    subtitle: "Birikim Hesabi",
+    subtitle: "Birikim Hesabı",
     last4: "7102",
     glyph: "B",
     color: "#1F3A5F",
@@ -24,7 +24,7 @@ const BANKS = [
   {
     id: "bank_c",
     name: "Bank C",
-    subtitle: "Kredi Karti",
+    subtitle: "Kredi Kartı",
     last4: "0394",
     glyph: "C",
     color: "#7A2E12",
@@ -33,9 +33,9 @@ const BANKS = [
 ];
 
 const STARTER_PROMPTS = [
-  "Bu ay neden daha cok harcadim?",
-  "Hangi bankada en cok harciyorum?",
-  "Tasarruf oranimi nasil artirabilirim?",
+  "Bu ay neden daha çok harcadım?",
+  "Hangi bankada en çok harcıyorum?",
+  "Tasarruf oranımı nasıl artırabilirim?",
 ];
 
 const icons = {
@@ -217,7 +217,7 @@ export default function Home() {
           {screen}
           {loggedIn && (
             <>
-              <button className="assistant-fab" aria-label="Asistani ac" onClick={() => setAssistantOpen(true)}>
+              <button className="assistant-fab" aria-label="Asistanı aç" onClick={() => setAssistantOpen(true)}>
                 <span className="fab-pulse" />
                 {icons.sparkle(22)}
               </button>
@@ -265,24 +265,24 @@ function LoginScreen({ onLogin }) {
       <div className="brand-mark">A</div>
       <p className="eyebrow">AIssistant</p>
       <h1>
-        Tum hesaplariniz,
+        Tüm hesaplarınız,
         <span> tek bir yerde.</span>
       </h1>
-      <p className="login-copy">Bankalarinizi baglayin, finansal durumunuzu tek mobil panoda izleyin.</p>
+      <p className="login-copy">Bankalarınızı bağlayın, finansal durumunuzu tek mobil panoda izleyin.</p>
       <form className="login-form" onSubmit={submit}>
         <label>
           <span>E-posta</span>
           <input defaultValue="demo@aissistant.app" type="email" />
         </label>
         <label>
-          <span>Sifre</span>
+          <span>Şifre</span>
           <input defaultValue="demo1234" type="password" />
         </label>
         <button className="primary-button" type="submit">
-          {submitting ? <span className="spinner" /> : "Giris Yap"}
+          {submitting ? <span className="spinner" /> : "Giriş Yap"}
         </button>
       </form>
-      <p className="demo-note">Demo girisi, gercek banka baglantisi yapmaz.</p>
+      <p className="demo-note">Demo girişi, gerçek banka bağlantısı yapmaz.</p>
     </section>
   );
 }
@@ -293,12 +293,12 @@ function DashboardScreen({ connected, summary, advicePreview, apiOffline, onConn
   if (!hasBanks) {
     return (
       <section className="screen">
-        <ScreenHeader eyebrow="14 Mayis - Persembe" title="Merhaba, Demo" />
+        <ScreenHeader eyebrow="14 Mayıs - Perşembe" title="Merhaba, Demo" />
         <div className="empty-state">
           <div className="empty-icon">{icons.bank(28)}</div>
-          <h2>Henuz banka bagli degil</h2>
-          <p>En az bir banka hesabi baglandiginda coklu banka panosu burada dolacak.</p>
-          <button className="primary-button" onClick={onConnectPrompt}>Banka Bagla</button>
+          <h2>Henüz banka bağlı değil</h2>
+          <p>En az bir banka hesabı bağlandığında çoklu banka panosu burada dolacak.</p>
+          <button className="primary-button" onClick={onConnectPrompt}>Banka Bağla</button>
         </div>
       </section>
     );
@@ -307,9 +307,9 @@ function DashboardScreen({ connected, summary, advicePreview, apiOffline, onConn
   return (
     <section className="screen">
       <ScreenHeader
-        eyebrow="14 Mayis - Persembe"
+        eyebrow="14 Mayıs - Perşembe"
         title="Merhaba, Demo"
-        right={<span className="status-pill">{connected.length} banka bagli</span>}
+        right={<span className="status-pill">{connected.length} banka bağlı</span>}
       />
       <div className="screen-stack">
         <BalanceCard summary={summary} connectedCount={connected.length} />
@@ -330,7 +330,7 @@ function BalanceCard({ summary, connectedCount }) {
     <div className="balance-card">
       <span>Toplam Bakiye</span>
       <strong>{summary ? formatTry(summary.totalBalance) : "API bekleniyor"}</strong>
-      <p>{connectedCount} bankadan gelen veriler birlestirilir.</p>
+      <p>{connectedCount} bankadan gelen veriler birleştirilir.</p>
     </div>
   );
 }
@@ -349,12 +349,12 @@ function AdviceCard({ apiOffline, summary, advicePreview }) {
   const text = advicePreview
     || summary?.advicePreview
     || (apiOffline
-      ? "API branch'i entegre edildiginde asistan gorusu burada canli veriden uretilecek."
-      : "Bagli hesaplardan gelen harcama oruntuleri burada ozetlenecek.");
+      ? "API branch'i entegre edildiğinde asistan görüşü burada canlı veriden üretilecek."
+      : "Bağlı hesaplardan gelen harcama örüntüleri burada özetlenecek.");
 
   return (
     <div className="advice-card">
-      <div>{icons.sparkle(16)} <span>Asistan Gorusu</span></div>
+      <div>{icons.sparkle(16)} <span>Asistan Görüşü</span></div>
       <p>{text}</p>
     </div>
   );
@@ -364,7 +364,7 @@ function CategoryCard({ summary }) {
   const categories = summary?.categoryBreakdown || summary?.categories || [];
   return (
     <div className="card">
-      <div className="section-title">Kategori Dagilimi</div>
+      <div className="section-title">Kategori Dağılımı</div>
       {categories.length === 0 ? (
         <p className="muted">Harcama kategorileri API verisiyle dolacak.</p>
       ) : (
@@ -387,7 +387,7 @@ function BankBreakdown({ summary }) {
     <div className="card">
       <div className="section-title">Bankalar</div>
       {banks.length === 0 ? (
-        <p className="muted">Banka bazli bakiye ve giderler API entegrasyonu ile gosterilecek.</p>
+        <p className="muted">Banka bazlı bakiye ve giderler API entegrasyonu ile gösterilecek.</p>
       ) : banks.map((bank) => (
         <div className="bank-row" key={bank.bank || bank.name}>
           <span>{bank.bank || bank.name}</span>
@@ -401,12 +401,12 @@ function BankBreakdown({ summary }) {
 function ConnectionsScreen({ banks, connected, busyId, onConnect, onDisconnect }) {
   return (
     <section className="screen">
-      <ScreenHeader eyebrow="Baglantilar" title="Hesaplar" />
-      <p className="screen-copy">Banka hesaplarinizi tek bir yerde toplayin. Asistan bagladiginiz hesaplar uzerinden calisir.</p>
+      <ScreenHeader eyebrow="Bağlantılar" title="Hesaplar" />
+      <p className="screen-copy">Banka hesaplarınızı tek bir yerde toplayın. Asistan bağladığınız hesaplar üzerinden çalışır.</p>
       <div className="connection-progress">
         {banks.map((bank) => <span key={bank.id} style={{ background: connected.includes(bank.id) ? bank.color : "var(--line)" }} />)}
         <strong>{connected.length} / {banks.length}</strong>
-        <small>banka baglandi</small>
+        <small>banka bağlandı</small>
       </div>
       <div className="bank-card-list">
         {banks.map((bank) => {
@@ -424,7 +424,7 @@ function ConnectionsScreen({ banks, connected, busyId, onConnect, onDisconnect }
                 disabled={busyId === bank.id}
                 onClick={() => isConnected ? onDisconnect(bank.id) : onConnect(bank.id)}
               >
-                {busyId === bank.id ? <span className="spinner" /> : isConnected ? "Kaldir" : "Bagla"}
+                {busyId === bank.id ? <span className="spinner" /> : isConnected ? "Kaldır" : "Bağla"}
               </button>
             </div>
           );
@@ -442,7 +442,7 @@ function TransactionsScreen({ banks, transactions }) {
 
   return (
     <section className="screen">
-      <ScreenHeader eyebrow="Mayis 2026" title="Hareketler" />
+      <ScreenHeader eyebrow="Mayıs 2026" title="Hareketler" />
       <div className="chips">
         <button className={filter === "all" ? "active" : ""} onClick={() => setFilter("all")}>Hepsi</button>
         {banks.map((bank) => (
@@ -450,7 +450,7 @@ function TransactionsScreen({ banks, transactions }) {
         ))}
       </div>
       {filtered.length === 0 ? (
-        <p className="empty-list">Bagli bankalardan gelen hareketler burada listelenecek.</p>
+        <p className="empty-list">Bağlı bankalardan gelen hareketler burada listelenecek.</p>
       ) : (
         <div className="transaction-list">
           {filtered.map((txn) => (
@@ -479,8 +479,8 @@ function AssistantSheet({ open, onClose, connectedCount, summary, transactions }
       {
         role: "assistant",
         content: connectedCount > 0
-          ? `${connectedCount} bankadan gelen verilerinize bakiyorum. Harcama ve gelir oruntuleriniz hakkinda soru sorabilirsiniz.`
-          : "Henuz bagli banka yok. Once Baglantilar ekranindan bir hesap ekleyebilirsiniz.",
+          ? `${connectedCount} bankadan gelen verilerinize bakıyorum. Harcama ve gelir örüntüleriniz hakkında soru sorabilirsiniz.`
+          : "Henüz bağlı banka yok. Önce Bağlantılar ekranından bir hesap ekleyebilirsiniz.",
       },
     ]);
   }, [open, connectedCount, messages.length]);
@@ -501,7 +501,7 @@ function AssistantSheet({ open, onClose, connectedCount, summary, transactions }
     } catch {
       setMessages((current) => [...current, {
         role: "assistant",
-        content: "Su anda yanit olusturamadim. Pano ozeti ve hareket gecmisi uzerinden harcamalarinizi inceleyebilirsiniz.",
+        content: "Şu anda yanıt oluşturamadım. Pano özeti ve hareket geçmişi üzerinden harcamalarınızı inceleyebilirsiniz.",
       }]);
     } finally {
       setThinking(false);
@@ -512,14 +512,14 @@ function AssistantSheet({ open, onClose, connectedCount, summary, transactions }
 
   return (
     <>
-      <button className="sheet-backdrop" aria-label="Asistani kapat" onClick={onClose} />
+      <button className="sheet-backdrop" aria-label="Asistanı kapat" onClick={onClose} />
       <section className="assistant-sheet">
         <div className="sheet-handle" />
         <header>
           <div className="assistant-mark">{icons.sparkle(18)}</div>
           <div>
             <h2>Asistan</h2>
-            <p>{connectedCount > 0 ? `${connectedCount} banka uzerinden` : "Bagli banka yok"}</p>
+            <p>{connectedCount > 0 ? `${connectedCount} banka üzerinden` : "Bağlı banka yok"}</p>
           </div>
           <button className="icon-button" onClick={onClose}>{icons.close()}</button>
         </header>
@@ -527,7 +527,7 @@ function AssistantSheet({ open, onClose, connectedCount, summary, transactions }
           {messages.map((message, index) => (
             <div className={`message ${message.role}`} key={`${message.role}-${index}`}>{message.content}</div>
           ))}
-          {thinking && <div className="message assistant">Dusunuyor...</div>}
+          {thinking && <div className="message assistant">Düşünüyor...</div>}
           {messages.length === 1 && connectedCount > 0 && (
             <div className="starter-prompts">
               {STARTER_PROMPTS.map((prompt) => <button key={prompt} onClick={() => send(prompt)}>{prompt}</button>)}
@@ -535,7 +535,7 @@ function AssistantSheet({ open, onClose, connectedCount, summary, transactions }
           )}
         </div>
         <div className="composer">
-          <input value={input} onChange={(event) => setInput(event.target.value)} onKeyDown={(event) => event.key === "Enter" && send()} placeholder="Finanslariniz hakkinda sorun" />
+          <input value={input} onChange={(event) => setInput(event.target.value)} onKeyDown={(event) => event.key === "Enter" && send()} placeholder="Finanslarınız hakkında sorun" />
           <button onClick={() => send()} disabled={!input.trim()}>{icons.send()}</button>
         </div>
       </section>
@@ -546,7 +546,7 @@ function AssistantSheet({ open, onClose, connectedCount, summary, transactions }
 function BottomNav({ tab, onChange }) {
   const items = [
     { id: "home", label: "Pano", icon: icons.home },
-    { id: "connections", label: "Baglantilar", icon: icons.link },
+    { id: "connections", label: "Bağlantılar", icon: icons.link },
     { id: "transactions", label: "Hareketler", icon: icons.list },
   ];
   return (

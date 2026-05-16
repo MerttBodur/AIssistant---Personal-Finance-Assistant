@@ -6,7 +6,7 @@
     {
       "id": "txn_b_001",
       "date": "2026-05-10",
-      "description": "Kira - Mayis",
+      "description": "Kira - Mayıs",
       "amount": 16500,
       "type": "expense",
       "category": "Rent",
@@ -15,7 +15,7 @@
     {
       "id": "txn_b_002",
       "date": "2026-05-08",
-      "description": "Dogalgaz - IGDAS",
+      "description": "Doğalgaz - İGDAŞ",
       "amount": 842,
       "type": "expense",
       "category": "Utilities",
@@ -24,7 +24,7 @@
     {
       "id": "txn_b_003",
       "date": "2026-05-07",
-      "description": "Elektrik - BEDAS",
+      "description": "Elektrik - BEDAŞ",
       "amount": 612,
       "type": "expense",
       "category": "Utilities",
@@ -42,7 +42,7 @@
     {
       "id": "txn_b_005",
       "date": "2026-05-05",
-      "description": "Su - ISKI",
+      "description": "Su - İSKİ",
       "amount": 178,
       "type": "expense",
       "category": "Utilities",
@@ -51,7 +51,7 @@
     {
       "id": "txn_b_006",
       "date": "2026-05-04",
-      "description": "Aidat - site yonetimi",
+      "description": "Aidat - site yönetimi",
       "amount": 950,
       "type": "expense",
       "category": "Utilities",
@@ -69,7 +69,7 @@
     {
       "id": "txn_b_008",
       "date": "2026-04-30",
-      "description": "Saglik sigortasi",
+      "description": "Sağlık sigortası",
       "amount": 1240,
       "type": "expense",
       "category": "Health",
