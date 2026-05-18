@@ -14,11 +14,48 @@ const RANGES = [
   { id: "1y",  label: "Son 1 yıl",     eyebrow: "Son 1 yıl",  days: 365 },
 ];
 
+const CATEGORIES = {
+  Food:          { label: "Yiyecek",   color: "#B36A1E" },
+  Market:        { label: "Market",    color: "#5C7A29" },
+  Transport:     { label: "Ulaşım",    color: "#1F4A36" },
+  Subscriptions: { label: "Abonelik",  color: "#7A2E12" },
+  Bills:         { label: "Faturalar", color: "#475569" },
+  Shopping:      { label: "Alışveriş", color: "#6E3A8A" },
+  Rent:          { label: "Kira",      color: "#1F3A5F" },
+  Salary:        { label: "Maaş",      color: "#1F4A36" },
+  Other:         { label: "Diğer",     color: "#8b8c7f" },
+};
+
+const BANK_COLORS = {
+  bank_a: "#1F4A36",
+  bank_b: "#1F3A5F",
+  bank_c: "#7A2E12",
+  "Bank A": "#1F4A36",
+  "Bank B": "#1F3A5F",
+  "Bank C": "#7A2E12",
+};
+
+const MONTH_TR = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran",
+  "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
+
+function categoryMeta(category) {
+  return CATEGORIES[category] || { label: category || "Diğer", color: "#8b8c7f" };
+}
+
 function cutoffISO(days) {
   if (!days) return null;
   const d = new Date(TODAY_ISO);
   d.setDate(d.getDate() - days);
   return d.toISOString().slice(0, 10);
+}
+
+function formatGroupHeader(isoDate) {
+  const today = new Date(TODAY_ISO);
+  const date = new Date(isoDate);
+  const diffDays = Math.round((today - date) / (1000 * 60 * 60 * 24));
+  if (diffDays === 0) return "Bugün";
+  if (diffDays === 1) return "Dün";
+  return `${date.getDate()} ${MONTH_TR[date.getMonth()]}`;
 }
 
 export function TransactionsScreen({ banks, transactions }) {
@@ -37,6 +74,16 @@ export function TransactionsScreen({ banks, transactions }) {
       );
     })
     .filter((txn) => (cutoff && txn.date ? txn.date >= cutoff : true));
+
+  const groups = useMemo(() => {
+    const byDate = new Map();
+    for (const txn of filtered) {
+      const key = txn.date || "—";
+      if (!byDate.has(key)) byDate.set(key, []);
+      byDate.get(key).push(txn);
+    }
+    return [...byDate.entries()].sort((a, b) => b[0].localeCompare(a[0]));
+  }, [filtered]);
 
   return (
     <section className="screen">
@@ -66,22 +113,46 @@ export function TransactionsScreen({ banks, transactions }) {
           </button>
         ))}
       </div>
+
       {filtered.length === 0 ? (
         <p className="empty-list">Bu zaman aralığında hareket bulunmuyor.</p>
       ) : (
-        <div className="transaction-list">
-          {filtered.map((txn) => (
-            <div className="transaction-row" key={txn.id}>
-              <div>
-                <strong>{txn.description}</strong>
-                <span>
-                  {txn.category} · {txn.source}
-                </span>
+        <div className="txn-groups">
+          {groups.map(([date, items]) => (
+            <div key={date} className="txn-group">
+              <div className="txn-group-header">{formatGroupHeader(date)}</div>
+              <div className="txn-list">
+                {items.map((txn) => {
+                  const cat = categoryMeta(txn.category);
+                  const isIncome = txn.type === "income";
+                  const bankColor = BANK_COLORS[txn.sourceId] || BANK_COLORS[txn.source] || "#8b8c7f";
+                  return (
+                    <div className="txn-row" key={txn.id}>
+                      <div
+                        className="txn-badge"
+                        style={{ background: `${cat.color}1f`, color: cat.color }}
+                      >
+                        {cat.label.charAt(0)}
+                      </div>
+                      <div className="txn-main">
+                        <div className="txn-desc">{txn.description}</div>
+                        <div className="txn-meta">
+                          <span>{cat.label}</span>
+                          <span className="txn-meta-sep">·</span>
+                          <span className="txn-bank">
+                            <span className="txn-bank-dot" style={{ background: bankColor }} />
+                            {txn.source}
+                          </span>
+                        </div>
+                      </div>
+                      <b className={isIncome ? "txn-amount income" : "txn-amount"}>
+                        {isIncome ? "+" : "-"}
+                        {formatTry(txn.amount).replace("-", "")}
+                      </b>
+                    </div>
+                  );
+                })}
               </div>
-              <b className={txn.type === "income" ? "income" : ""}>
-                {txn.type === "income" ? "+" : "-"}
-                {formatTry(txn.amount).replace("-", "")}
-              </b>
             </div>
           ))}
         </div>
