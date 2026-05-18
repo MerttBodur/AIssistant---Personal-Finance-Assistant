@@ -1,88 +1,39 @@
 {
   "bankName": "Bank B",
   "accountType": "savings",
-  "balance": 48200,
+  "balance": 94700,
   "transactions": [
-    {
-      "id": "txn_b_001",
-      "date": "2026-05-10",
-      "description": "Kira - Mayıs",
-      "amount": 16500,
-      "type": "expense",
-      "category": "Rent",
-      "source": "Bank B"
-    },
-    {
-      "id": "txn_b_002",
-      "date": "2026-05-08",
-      "description": "Doğalgaz - İGDAŞ",
-      "amount": 842,
-      "type": "expense",
-      "category": "Utilities",
-      "source": "Bank B"
-    },
-    {
-      "id": "txn_b_003",
-      "date": "2026-05-07",
-      "description": "Elektrik - BEDAŞ",
-      "amount": 612,
-      "type": "expense",
-      "category": "Utilities",
-      "source": "Bank B"
-    },
-    {
-      "id": "txn_b_004",
-      "date": "2026-05-06",
-      "description": "Internet - Turkcell",
-      "amount": 389,
-      "type": "expense",
-      "category": "Utilities",
-      "source": "Bank B"
-    },
-    {
-      "id": "txn_b_005",
-      "date": "2026-05-05",
-      "description": "Su - İSKİ",
-      "amount": 178,
-      "type": "expense",
-      "category": "Utilities",
-      "source": "Bank B"
-    },
-    {
-      "id": "txn_b_006",
-      "date": "2026-05-04",
-      "description": "Aidat - site yönetimi",
-      "amount": 950,
-      "type": "expense",
-      "category": "Utilities",
-      "source": "Bank B"
-    },
-    {
-      "id": "txn_b_007",
-      "date": "2026-05-02",
-      "description": "Birikim transferi",
-      "amount": 5000,
-      "type": "income",
-      "category": "Other",
-      "source": "Bank B"
-    },
-    {
-      "id": "txn_b_008",
-      "date": "2026-04-30",
-      "description": "Sağlık sigortası",
-      "amount": 1240,
-      "type": "expense",
-      "category": "Health",
-      "source": "Bank B"
-    }
+    { "id": "txn_b_001", "date": "2026-05-10", "description": "Vadeli Hesap Faiz Getirisi - Mayıs", "amount": 1240, "type": "income", "category": "Birikim", "source": "Bank B" },
+    { "id": "txn_b_002", "date": "2026-05-05", "description": "Aylık Birikim Transferi", "amount": 8000, "type": "income", "category": "Birikim", "source": "Bank B" },
+    { "id": "txn_b_003", "date": "2026-04-10", "description": "Vadeli Hesap Faiz Getirisi - Nisan", "amount": 1195, "type": "income", "category": "Birikim", "source": "Bank B" },
+    { "id": "txn_b_004", "date": "2026-04-05", "description": "Aylık Birikim Transferi", "amount": 8000, "type": "income", "category": "Birikim", "source": "Bank B" },
+    { "id": "txn_b_005", "date": "2026-03-28", "description": "Acil Durum Fonu Çekimi", "amount": 4500, "type": "expense", "category": "Ev", "source": "Bank B" },
+    { "id": "txn_b_006", "date": "2026-03-10", "description": "Vadeli Hesap Faiz Getirisi - Mart", "amount": 1150, "type": "income", "category": "Birikim", "source": "Bank B" },
+    { "id": "txn_b_007", "date": "2026-03-05", "description": "Aylık Birikim Transferi", "amount": 8000, "type": "income", "category": "Birikim", "source": "Bank B" },
+    { "id": "txn_b_008", "date": "2026-02-10", "description": "Vadeli Hesap Faiz Getirisi - Şubat", "amount": 1110, "type": "income", "category": "Birikim", "source": "Bank B" },
+    { "id": "txn_b_009", "date": "2026-02-05", "description": "Aylık Birikim Transferi", "amount": 8000, "type": "income", "category": "Birikim", "source": "Bank B" },
+    { "id": "txn_b_010", "date": "2026-01-10", "description": "Vadeli Hesap Faiz Getirisi - Ocak", "amount": 1080, "type": "income", "category": "Birikim", "source": "Bank B" },
+    { "id": "txn_b_011", "date": "2026-01-05", "description": "Aylık Birikim Transferi", "amount": 8000, "type": "income", "category": "Birikim", "source": "Bank B" },
+    { "id": "txn_b_012", "date": "2025-12-28", "description": "Yılbaşı Tatil Harcaması", "amount": 12000, "type": "expense", "category": "Seyahat", "source": "Bank B" },
+    { "id": "txn_b_013", "date": "2025-12-10", "description": "Vadeli Hesap Faiz Getirisi - Aralık", "amount": 1020, "type": "income", "category": "Birikim", "source": "Bank B" },
+    { "id": "txn_b_014", "date": "2025-12-05", "description": "Yıl Sonu Ekstra Birikim", "amount": 15000, "type": "income", "category": "Birikim", "source": "Bank B" },
+    { "id": "txn_b_015", "date": "2025-12-05", "description": "Aylık Birikim Transferi", "amount": 8000, "type": "income", "category": "Birikim", "source": "Bank B" },
+    { "id": "txn_b_016", "date": "2025-11-10", "description": "Vadeli Hesap Faiz Getirisi - Kasım", "amount": 980, "type": "income", "category": "Birikim", "source": "Bank B" },
+    { "id": "txn_b_017", "date": "2025-11-05", "description": "Aylık Birikim Transferi", "amount": 8000, "type": "income", "category": "Birikim", "source": "Bank B" },
+    { "id": "txn_b_018", "date": "2025-10-10", "description": "Vadeli Hesap Faiz Getirisi - Ekim", "amount": 945, "type": "income", "category": "Birikim", "source": "Bank B" },
+    { "id": "txn_b_019", "date": "2025-10-05", "description": "Aylık Birikim Transferi", "amount": 8000, "type": "income", "category": "Birikim", "source": "Bank B" },
+    { "id": "txn_b_020", "date": "2025-09-20", "description": "Acil Durum Fonu Çekimi", "amount": 7800, "type": "expense", "category": "Ulaşım", "source": "Bank B" },
+    { "id": "txn_b_021", "date": "2025-09-10", "description": "Vadeli Hesap Faiz Getirisi - Eylül", "amount": 910, "type": "income", "category": "Birikim", "source": "Bank B" },
+    { "id": "txn_b_022", "date": "2025-09-05", "description": "Aylık Birikim Transferi", "amount": 8000, "type": "income", "category": "Birikim", "source": "Bank B" },
+    { "id": "txn_b_023", "date": "2025-08-10", "description": "Vadeli Hesap Faiz Getirisi - Ağustos", "amount": 875, "type": "income", "category": "Birikim", "source": "Bank B" },
+    { "id": "txn_b_024", "date": "2025-08-05", "description": "Aylık Birikim Transferi", "amount": 8000, "type": "income", "category": "Birikim", "source": "Bank B" },
+    { "id": "txn_b_025", "date": "2025-07-10", "description": "Vadeli Hesap Faiz Getirisi - Temmuz", "amount": 840, "type": "income", "category": "Birikim", "source": "Bank B" },
+    { "id": "txn_b_026", "date": "2025-07-05", "description": "Aylık Birikim Transferi", "amount": 8000, "type": "income", "category": "Birikim", "source": "Bank B" },
+    { "id": "txn_b_027", "date": "2025-06-10", "description": "Vadeli Hesap Faiz Getirisi - Haziran", "amount": 800, "type": "income", "category": "Birikim", "source": "Bank B" },
+    { "id": "txn_b_028", "date": "2025-06-05", "description": "Aylık Birikim Transferi", "amount": 8000, "type": "income", "category": "Birikim", "source": "Bank B" }
   ],
   "upcoming_payments": [
-    {
-      "id": "up_b_001",
-      "due_date": "2026-11-01",
-      "amount": 8500,
-      "description": "Konut kredisi taksiti",
-      "source": "Bank B"
-    }
+    { "id": "up_b_001", "due_date": "2026-06-05", "amount": 8000, "description": "Aylık Birikim Transferi", "source": "Bank B" },
+    { "id": "up_b_002", "due_date": "2026-06-10", "amount": 1280, "description": "Vadeli Hesap Faiz Getirisi - Haziran", "source": "Bank B" }
   ]
 }
