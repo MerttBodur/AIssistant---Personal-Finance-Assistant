@@ -546,6 +546,72 @@ button { cursor: pointer; }
   font-weight: 600;
 }
 
+/* ---------- Transactions: grouped list ---------- */
+.txn-groups { display: flex; flex-direction: column; gap: 18px; }
+.txn-group-header {
+  margin-bottom: 6px;
+  padding: 0 4px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.txn-list {
+  background: var(--bg-card);
+  border: 1px solid var(--line-soft);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.txn-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-top: 1px solid var(--line-soft);
+}
+.txn-row:first-child { border-top: 0; }
+.txn-badge {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  font: 500 16px/1 Newsreader, Georgia, serif;
+}
+.txn-main { flex: 1; min-width: 0; }
+.txn-desc {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.txn-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+  font-size: 11px;
+  color: var(--ink-3);
+}
+.txn-meta-sep { opacity: 0.5; }
+.txn-bank { display: inline-flex; align-items: center; gap: 5px; }
+.txn-bank-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.txn-amount {
+  font: 500 14px ui-monospace, "JetBrains Mono", monospace;
+  color: var(--ink);
+  flex-shrink: 0;
+}
+.txn-amount.income { color: var(--positive); }
+
 /* ---------- Connections: safety note ---------- */
 .safety-note {
   display: flex;
