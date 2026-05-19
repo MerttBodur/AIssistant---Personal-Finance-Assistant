@@ -9,8 +9,17 @@ const BANK_FILES = {
 
 const MOCK_DIR = path.join(process.cwd(), "..", "mock-data");
 
-const bankCache = new Map();
-const connected = new Map();
+// Dev-mode fix: Next.js App Router compiles each route handler with its own
+// module graph, so a module-scoped Map would give every route its own state
+// (and gets wiped whenever a new route is compiled for the first time).
+// Stashing the Maps on globalThis keeps a single instance across route bundles
+// and across HMR re-evaluations. No-op cost in production.
+const STATE_KEY = Symbol.for("aissistant.bankState");
+const state = (globalThis[STATE_KEY] ??= {
+  bankCache: new Map(),
+  connected: new Map(),
+});
+const { bankCache, connected } = state;
 
 function loadBank(bankId) {
   if (bankCache.has(bankId)) return bankCache.get(bankId);
