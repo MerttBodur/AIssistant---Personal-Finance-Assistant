@@ -192,3 +192,7 @@ Tasarım dokümanı §6.6'da açıkça kapsam dışında bırakılanlar:
 - Gerçek banka bağlantısı, gerçek kimlik doğrulama
 - Veri tabanı veya kalıcı saklama
 
+## Geliştirici Ekibi
+
+Mert Bodur --- Ekip Lideri - Yazılım ve Yapay Zeka Geliştiricisi
+Kerem Kara --- Fikir ve Veri Araştırmacısı
