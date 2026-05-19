@@ -1,6 +1,6 @@
 # AIssistant — Çoklu Banka Kişisel Finans Asistanı
 
-Türkiye'deki kullanıcılar için tasarlanmış, **birden fazla bankadaki harcamaları tek bir ekranda birleştiren** mobil görünümlü bir kişisel finans asistanı. Hackathon kapsamında 4 kişilik bir öğrenci ekibi tarafından geliştirilmiştir.
+Türkiye'deki kullanıcılar için tasarlanmış, **birden fazla bankadaki harcamaları tek bir ekranda birleştiren** mobil görünümlü bir kişisel finans asistanı. Hackathon kapsamında 2 kişilik bir öğrenci ekibi tarafından geliştirilmiştir.
 
 > ⚠️ **Bu proje BTK Hackathon 2026 için geliştirilmiş bir demodur.** Gerçek banka entegrasyonu, gerçek kullanıcı kimlik doğrulaması veya kalıcı veri tabanı içermez. Tüm banka verileri `mock-data/` klasöründeki JSON dosyalarından yüklenir.
 
@@ -188,16 +188,7 @@ Akış: `feature/<konu>` → `dev` → `main`. Detaylar `CLAUDE.md` içinde.
 
 Tasarım dokümanı §6.6'da açıkça kapsam dışında bırakılanlar:
 
-- Önceki ay karşılaştırması, anomali tespiti
-- Ayarlar sayfası, hedef/bütçe sayfası
-- İşlem detay görünümü, CSV yükleme
-- Gerçek banka API'leri, gerçek kimlik doğrulama
+- Ayarlar sayfası, hedef sayfası
+- Gerçek banka bağlantısı, gerçek kimlik doğrulama
 - Veri tabanı veya kalıcı saklama
 
-Bu sınırlar 4 günlük hackathon zaman çizelgesine (§6.2) sadık kalmak içindir.
-
----
-
-## Lisans
-
-Hackathon eğitim amaçlı geliştirilmiştir. Üretim ortamı için tasarlanmamıştır.
