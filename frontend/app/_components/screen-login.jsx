@@ -35,7 +35,6 @@ export function LoginScreen({ onLogin }) {
           {submitting ? <span className="spinner" /> : "Giriş Yap"}
         </button>
       </form>
-      <p className="demo-note">Demo girişi, gerçek banka bağlantısı yapmaz.</p>
     </section>
   );
 }

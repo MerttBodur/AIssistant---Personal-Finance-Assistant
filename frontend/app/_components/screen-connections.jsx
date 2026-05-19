@@ -52,10 +52,6 @@ export function ConnectionsScreen({ banks, connected, busyId, onConnect, onDisco
           );
         })}
       </div>
-      <div className="safety-note">
-        <span>{icons.shield(14)}</span>
-        <span>Bu demo'da gerçek banka bağlantısı yoktur. Bağlandığınızda örnek veriler yüklenir.</span>
-      </div>
     </section>
   );
 }

@@ -8,7 +8,7 @@ export function DashboardScreen({ connected, summary, advicePreview, apiOffline,
   if (!hasBanks) {
     return (
       <section className="screen">
-        <ScreenHeader eyebrow="14 Mayıs - Perşembe" title="Merhaba, Demo" />
+        <ScreenHeader eyebrow="14 Mayıs - Perşembe" title="Merhaba" />
         <div className="empty-state">
           <div className="empty-icon">{icons.bank(28)}</div>
           <h2>Henüz banka bağlı değil</h2>
@@ -23,7 +23,7 @@ export function DashboardScreen({ connected, summary, advicePreview, apiOffline,
     <section className="screen">
       <ScreenHeader
         eyebrow="14 Mayıs - Perşembe"
-        title="Merhaba, Demo"
+        title="Merhaba"
         right={<span className="status-pill">{connected.length} banka bağlı</span>}
       />
       <div className="screen-stack">
